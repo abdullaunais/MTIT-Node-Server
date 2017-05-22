@@ -1,0 +1,41 @@
+import { Component } from '@angular/core';
+import { Routes } from '@angular/router';
+
+import { BaMenuService } from '../theme';
+import { PAGES_MENU } from './pages.menu';
+
+@Component({
+  selector: 'pages',
+  template: `
+    <ba-sidebar></ba-sidebar>
+    <ba-page-top></ba-page-top>
+    <div class="al-main">
+      <div class="al-content">
+        <ba-content-top></ba-content-top>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <footer class="al-footer clearfix">
+      <div class="al-footer-right" >All Rights Reserved</div>
+      <div class="al-footer-main clearfix">
+        <div class="al-copy">&copy; <a href="http://google.com/+AbdullaUnais">OwlCity Dev</a> 2016</div>
+        <ul class="al-share clearfix">
+          <li><a target="_blank" href="https://facebook.com/abdullaunaiz"><i class="socicon socicon-facebook"></i></a></li>
+          <li><a target="_blank" href="https://twitter.com/@NuttLoose"><i class="socicon socicon-twitter"></i></a></li>
+          <li><a target="_blank" href="https://google.com/+AbdullaUnais"><i class="socicon socicon-google"></i></a></li>
+          <li><a target="_blank" href="https://github.com/abdullaunais"><i class="socicon socicon-github"></i></a></li>
+        </ul>
+      </div>
+    </footer>
+    <ba-back-top position="200"></ba-back-top>
+    `
+})
+export class Pages {
+
+  constructor(private _menuService: BaMenuService,) {
+  }
+
+  ngOnInit() {
+    this._menuService.updateMenuByRoutes(<Routes>PAGES_MENU);
+  }
+}

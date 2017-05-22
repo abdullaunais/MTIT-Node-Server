@@ -1,0 +1,9 @@
+{
+    "database": {
+        "type": "mongodb",
+        "name": "mtit",
+        "user": "root",
+        "password": "102203330MTIT",
+        "host": "ds149201.mlab.com:49201/mtit"
+    }
+}
