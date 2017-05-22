@@ -4,7 +4,8 @@
   "description": "MTIT Node Application Assignment usign Node, Express, MongoDB",
   "main": "server.js",
   "scripts": {
-    "test": "node server.js"
+    "test": "node server.js --inspect",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,12 @@
   "bugs": {
     "url": "https://github.com/abdullaunais/MTIT-Node-Assignment/issues"
   },
-  "homepage": "https://github.com/abdullaunais/MTIT-Node-Assignment#readme"
+  "homepage": "https://github.com/abdullaunais/MTIT-Node-Assignment#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongodb": "^2.2.26"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
 }
