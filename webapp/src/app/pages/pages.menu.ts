@@ -6,7 +6,7 @@ export const PAGES_MENU = [
         path: 'showcase',
         data: {
           menu: {
-            title: 'Movie Showcase',
+            title: 'Showcase',
             icon: 'ion-android-home',
             selected: false,
             expanded: false,
@@ -18,7 +18,38 @@ export const PAGES_MENU = [
         path: '',
         data: {
           menu: {
-            title: 'general.menu.pages',
+            title: 'Movies',
+            icon: 'ion-bookmark',
+            selected: false,
+            expanded: false,
+            order: 650,
+          }
+        },
+        children: [
+          {
+            path: ['/view'],
+            data: {
+              menu: {
+                title: 'Movie List'         
+                
+              }
+            }
+          },
+          {
+            path: ['/new'],
+            data: {
+              menu: {
+                title: 'New Movie'
+              }
+            }
+          }
+        ]
+      },
+      {
+        path: '',
+        data: {
+          menu: {
+            title: 'Pages',
             icon: 'ion-document',
             selected: false,
             expanded: false,
@@ -30,7 +61,7 @@ export const PAGES_MENU = [
             path: ['/login'],
             data: {
               menu: {
-                title: 'general.menu.login'
+                title: 'Login'
               }
             }
           },
@@ -38,7 +69,7 @@ export const PAGES_MENU = [
             path: ['/register'],
             data: {
               menu: {
-                title: 'general.menu.register'
+                title: 'Register'
               }
             }
           }
