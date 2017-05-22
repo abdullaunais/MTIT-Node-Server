@@ -1,0 +1,26 @@
+{
+  "name": "nodeserver",
+  "version": "1.0.0",
+  "description": "MTIT Node Application Assignment usign Node, Express, MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdullaunais/MTIT-Node-Assignment.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "server",
+    "javascript"
+  ],
+  "author": "Abdulla Unais",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/abdullaunais/MTIT-Node-Assignment/issues"
+  },
+  "homepage": "https://github.com/abdullaunais/MTIT-Node-Assignment#readme"
+}
