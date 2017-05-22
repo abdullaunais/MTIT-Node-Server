@@ -3,7 +3,6 @@ import { CommonModule }  from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgUploaderModule } from 'ngx-uploader';
-import { AppTranslationModule } from '../app.translation.module';
 
 import {
   BaThemeConfig
@@ -14,10 +13,7 @@ import {
 } from './theme.configProvider';
 
 import {
-  BaAmChart,
   BaBackTop,
-  BaCard,
-  BaChartistChart,
   BaCheckbox,
   BaContentTop,
   BaFullCalendar,
@@ -58,10 +54,7 @@ import {
 } from './validators';
 
 const NGA_COMPONENTS = [
-  BaAmChart,
   BaBackTop,
-  BaCard,
-  BaChartistChart,
   BaCheckbox,
   BaContentTop,
   BaFullCalendar,
@@ -111,7 +104,6 @@ const NGA_VALIDATORS = [
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AppTranslationModule,
     NgUploaderModule
   ],
   exports: [
