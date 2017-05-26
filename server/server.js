@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
 let fs = require('fs');
@@ -12,11 +13,43 @@ MongoClient.connect(db_url, (err, dbase) => {
   if (err) return console.log(err);
   database = dbase;
 
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
   app.listen(3000, () => {
     console.log('listening on 3000.');
   });
 
-  app.get('/', (req, res) => {
-    res.send('Hello World');
+  app.get('/movies', (req, res) => {
+    database.collection('movies').find().toArray(function (err, results) {
+      console.log(results);
+      res.send(results);
+    });
+  });
+
+  app.post('/addmovie', (req, res) => {
+    console.log(req.body);
+    database.collection('movies').save(req.body, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.send(500, err);
+      }
+      console.log('saved to database')
+      res.send(201,'saved successfully');
+    })
+  });
+
+  app.delete('/deletemovie', (req, res) => {
+    database.collection('movies').findOneAndDelete({
+      "_id": req.body['_id']
+    }, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.send(500, err);
+      }
+      console.log('movie deleted');
+      res.send(200,'movie deleted');
+    });
   });
 });
