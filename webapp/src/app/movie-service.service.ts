@@ -19,6 +19,13 @@ export class MovieService {
     this.serviceRootUrl = "http://localhost:3000/api";
   }
 
+  /**
+   * 
+   * Get All Movies Service Interface Call
+   * @returns Promise
+   * 
+   * @memberof MovieService
+   */
   getAllMovies() {
     let requestUrl: string = this.serviceRootUrl + this.GET_MOVIES_URL;
     return new Promise(resolve => {
@@ -29,6 +36,15 @@ export class MovieService {
     });
   }
 
+
+  /**
+   * 
+   * Movie Create Service Interface Call
+   * @param {*} movie 
+   * @returns Promise
+   * 
+   * @memberof MovieService
+   */
   addMovie(movie: any) {
     let body = JSON.stringify(movie);
     let headers = new Headers();
@@ -46,6 +62,15 @@ export class MovieService {
     });
   }
 
+
+  /**
+   * 
+   * Movie Delete Service Interface Call
+   * @param {*} movie 
+   * @returns Promise
+   * 
+   * @memberof MovieService
+   */
   removeMovie(movie: any) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -62,6 +87,15 @@ export class MovieService {
     });
   }
 
+
+  /**
+   * 
+   * Movie Update Service Interface Call
+   * @param {*} movie 
+   * @returns Promise
+   * 
+   * @memberof MovieService
+   */
   updateMovie(movie: any) {
     let body = JSON.stringify(movie);
     let headers = new Headers();

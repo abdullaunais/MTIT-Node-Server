@@ -21,6 +21,12 @@ MongoClient.connect(db_url, (err, dbase) => {
     console.log('listening on 3000.');
   });
 
+  app.get('/initialize', (req, res) => {
+    database.collection('users').findOne({email:'admin@moviedb.com'}, (err, item) => {
+      // item is the existing user object
+    });
+  });
+
   app.get('/movies', (req, res) => {
     database.collection('movies').find().toArray(function (err, results) {
       console.log(results);
@@ -55,11 +61,12 @@ MongoClient.connect(db_url, (err, dbase) => {
 
   app.put('/updatemovie', (req, res) => {
     database.collection('movies').findOneAndUpdate({
-      "_id": req.body.movie['_id']
+      "_id": req.body.oldmovie['_id']
     }, {
       $set: {
-        name: req.body.name,
-        year: req.body.year
+        name: req.body.newmovie.name,
+        year: req.body.newmovie.year,
+        rating: req.body.newmovie.rating
       }
     }, {
       sort: {
@@ -71,9 +78,28 @@ MongoClient.connect(db_url, (err, dbase) => {
         console.log(err);
         return res.send(err);
       }
-      console.log('movie deleted');
+      console.log('movie updated');
       res.send(200, result)
     });
+  });
+
+  /**
+   * User Registration Interface
+   * @req.body user object
+   * @res operation status
+   * 
+   */
+  app.post('/user/register', (req, res) => {
+    console.log(req.body);
+    req.body['type'] = "standard";
+    database.collection('users').save(req.body, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.send(500, err);
+      }
+      console.log('saved registration');
+      res.send(201, 'registration successful');
+    })
   });
 
 });
