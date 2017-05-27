@@ -187,7 +187,7 @@ MongoClient.connect(db_url, (err, dbase) => {
     database.collection('users').findOne({ email: credentials.email }, (err, item) => {
       if (item) {
         bcrypt.compare(credentials.password, item.password, (err, passwordMatch) => {
-          if (passwordMatch) res.send(200, "login success");
+          if (passwordMatch) res.send(200, { "user":item, "message":"login success"});
           else res.send(401, "invalid credentials");
         });
       } else {

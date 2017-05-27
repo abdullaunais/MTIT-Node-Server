@@ -9,13 +9,14 @@ $text-color: #ffffff;
   height: 100%;
   width: 100%;
   position: absolute;
+  background-color: #1c2b36;
 }
 
 .auth-block {
   width: 540px;
   margin: 0 auto;
   border-radius: 5px;
-  @include bg-translucent-dark(0.55);
+  background-color: rgba(255,255,255, 0.2);
   color: #fff;
   padding: 32px;
   h1 {
