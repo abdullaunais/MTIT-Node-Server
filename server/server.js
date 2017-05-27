@@ -61,18 +61,7 @@ MongoClient.connect(db_url, (err, dbase) => {
             console.log('initiated user');
 
             let movies = new Array();
-            movies.push({
-              "name": "Sherlock TV",
-              "description": "A Television Series of Modern Sherlock Holmes by BBC One.",
-              "year": 2015,
-              "rating": 9.1
-            });
-            movies.push({
-              "name": "The Hunger Games",
-              "description": "A sci-fi movie series surrounding a girl who struggles to keep her family safe.",
-              "year": 2008,
-              "rating": 8.8
-            });
+            movies = config.movieData;
 
             let reqCount = 0;
             movies.forEach((movie, index) => {

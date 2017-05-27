@@ -5,5 +5,21 @@
         "user": "root",
         "password": "102203330MTIT",
         "host": "ds149201.mlab.com:49201/mtit"
-    }
+    },
+    "movieData": [
+        {
+            "name": "Sherlock TV",
+            "description": "A Television Series of Modern Sherlock Holmes by BBC One.",
+            "img": "https://images-na.ssl-images-amazon.com/images/M/MV5BMWY3NTljMjEtYzRiMi00NWM2LTkzNjItZTVmZjE0MTdjMjJhL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTQ4NTc5OTU@._V1_.jpg",
+            "year": 2015,
+            "rating": 9.1
+        },
+        {
+            "name": "The Hunger Games",
+            "description": "A sci-fi movie series surrounding a girl who struggles to keep her family safe.",
+            "img": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA4NDg3NzYxMF5BMl5BanBnXkFtZTcwNTgyNzkyNw@@._V1_SY1000_CR0,0,674,1000_AL_.jpg",
+            "year": 2012,
+            "rating": 7.2
+        }
+    ]
 }
