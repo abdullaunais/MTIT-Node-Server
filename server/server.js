@@ -36,7 +36,7 @@ MongoClient.connect(db_url, (err, dbase) => {
         return res.send(500, err);
       }
       console.log('saved to database')
-      res.send(201,'saved successfully');
+      res.send(201, 'saved successfully');
     })
   });
 
@@ -49,7 +49,31 @@ MongoClient.connect(db_url, (err, dbase) => {
         return res.send(500, err);
       }
       console.log('movie deleted');
-      res.send(200,'movie deleted');
+      res.send(200, 'movie deleted');
     });
   });
+
+  app.put('/updatemovie', (req, res) => {
+    database.collection('movies').findOneAndUpdate({
+      "_id": req.body.movie['_id']
+    }, {
+      $set: {
+        name: req.body.name,
+        year: req.body.year
+      }
+    }, {
+      sort: {
+        _id: -1
+      },
+      upsert: true
+    }, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.send(err);
+      }
+      console.log('movie deleted');
+      res.send(200, result)
+    });
+  });
+
 });

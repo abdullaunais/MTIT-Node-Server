@@ -11,6 +11,7 @@ export class MovieService {
   GET_MOVIES_URL = "/movies";
   ADD_MOVIE_URL = "/addmovie";
   REMOVE_MOVIE_URL = "/removemovie";
+  UPDATE_MOVIE_URL = "/updatemovie"
 
   constructor(public httpService: Http) {
     this.http = httpService;
@@ -45,7 +46,36 @@ export class MovieService {
     });
   }
 
-  removeMovie(id: any) {
-    let requestUrl = this.serviceRootUrl + this.REMOVE_MOVIE_URL;
+  removeMovie(movie: any) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    let requestUrl = this.serviceRootUrl + this.REMOVE_MOVIE_URL + "?movieId=" + movie['_id'];
+    return new Promise(resolve => {
+      this.http.delete(requestUrl, options)
+        .subscribe(data => {
+          resolve(data);
+        }, err => {
+          resolve(err);
+        });
+    });
+  }
+
+  updateMovie(movie: any) {
+    let body = JSON.stringify(movie);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    let requestUrl = this.serviceRootUrl + this.UPDATE_MOVIE_URL;
+    return new Promise(resolve => {
+      this.http.put(requestUrl, body, options)
+        .subscribe(data => {
+          resolve(data);
+        }, err => {
+          resolve(err);
+        });
+    });
   }
 }
