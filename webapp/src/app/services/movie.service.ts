@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { config } from "app/config";
 
 @Injectable()
 export class MovieService {
@@ -16,7 +17,7 @@ export class MovieService {
   constructor(public httpService: Http) {
     this.http = httpService;
     this.data = null;
-    this.serviceRootUrl = "http://localhost:3000/api";
+    this.serviceRootUrl = config.server_root;
   }
 
   /**
