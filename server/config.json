@@ -8,20 +8,44 @@
     },
     "movieData": [
         {
-            "name": "Sherlock TV",
-            "description": "A Television Series of Modern Sherlock Holmes by BBC One.",
+            "name": "Sherlock",
+            "description": "A modern update finds the famous sleuth and his doctor partner solving crime in 21st century London.",
             "img": "https://images-na.ssl-images-amazon.com/images/M/MV5BMWY3NTljMjEtYzRiMi00NWM2LTkzNjItZTVmZjE0MTdjMjJhL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTQ4NTc5OTU@._V1_.jpg",
-            "year": 2015,
-            "genre": "Action",
-            "rating": 9.1
+            "year": 2010,
+            "genre": "Crime",
+            "rating": 9.2
         },
         {
             "name": "The Hunger Games",
-            "description": "A sci-fi movie series surrounding a girl who struggles to keep her family safe.",
+            "description": "Katniss Everdeen voluntarily takes her younger sister's place in the Hunger Games: a televised competition in which two teenagers from each of the twelve Districts of Panem are chosen at random to fight to the death.",
             "img": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjA4NDg3NzYxMF5BMl5BanBnXkFtZTcwNTgyNzkyNw@@._V1_SY1000_CR0,0,674,1000_AL_.jpg",
             "year": 2012,
-            "genre":"Sci-Fi",
+            "genre":" Adventure",
             "rating": 7.2
+        },
+        {
+            "name": "Logan",
+            "description": "In the near future, a weary Logan cares for an ailing Professor X somewhere on the Mexican border. However, Logan's attempts to hide from the world and his legacy are upended when a young mutant arrives, pursued by dark forces.",
+            "img":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjQwODQwNTg4OV5BMl5BanBnXkFtZTgwMTk4MTAzMjI@._V1_.jpg",
+            "year": 2017,
+            "genre": "Action",
+            "rating": 8.3
+        },
+        {
+            "name":"Doctor Strange",
+            "description": "While on a journey of physical and spiritual healing, a brilliant neurosurgeon is drawn into the world of the mystic arts.",
+            "img": "https://images-na.ssl-images-amazon.com/images/M/MV5BNjgwNzAzNjk1Nl5BMl5BanBnXkFtZTgwMzQ2NjI1OTE@._V1_SY1000_CR0,0,674,1000_AL_.jpg",
+            "year": 2016,
+            "genre":"Action",
+            "rating":7.6
+        },
+        {
+            "name": "The Fault in Our Stars",
+            "description": "Two teenage cancer patients begin a life-affirming journey to visit a reclusive author in Amsterdam.",
+            "img":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjA4NzkxNzc5Ml5BMl5BanBnXkFtZTgwNzQ3OTMxMTE@._V1_SY1000_CR0,0,675,1000_AL_.jpg",
+            "year":2014,
+            "genre":"Romance",
+            "rating":7.8
         }
     ]
 }

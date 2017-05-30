@@ -1,15 +1,16 @@
 <div class="row">
   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
-    <div class="card" *ngFor="let movie of movies; let i = index;" style="width: 30em; height:auto; margin:1rem; float:left;">
-      <img class="card-img-left" src="{{ movie.img }}" style="width:10rem; height:auto;border-bottom-left-radius:6px; border-top-left-radius:6px;" alt="Card image cap">
+    <div class="card" *ngFor="let movie of movies; let i = index;" style="width: 30em; height:17em; margin:1rem; float:left;">
+      <img class="card-img-left" src="{{ movie.img }}" style="width:10rem; height:100%;border-bottom-left-radius:6px; border-top-left-radius:6px;" alt="Card image cap">
       <div class="card-block" style="width:19em; height: 100%; position:absolute; right:0;top:0;">
         <h4 class="card-title">{{ movie.name }} ({{ movie.year }})</h4>
         <i><p class="card-text" style="color:#bbb; margin:-8px 0 1em 0;">{{ movie.genre }}</p></i>
         <p class="card-text">{{ movie.description }}</p>
+        <div style="position: absolute; bottom:1em; left:1.5em;">
         <div class="star-ratings-sprite"><span [style.width.%]="movie.rating*10" class="star-ratings-sprite-rating"></span></div>
         <button ngClass="{status-button btn btn-xs btn-warning" style="margin: -10px 0 0 1em;">{{ movie.rating }}</button>
-        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+        </div>
       </div>
     </div>
 
