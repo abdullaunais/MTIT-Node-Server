@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
+
+let MongoClient = require('mongodb').MongoClient;
+let MongoObjectID = require('mongodb').ObjectID;
 
 let fs = require('fs');
 let path = require('path');
@@ -16,7 +18,7 @@ MongoClient.connect(db_url, (err, dbase) => {
   /**
    * ROOT
    * TYPE - GET
-   * @res Homepage
+   * @res API Homepage.html
    * Test Passed
    */
   app.get('/', (req, res) => {
@@ -30,6 +32,7 @@ MongoClient.connect(db_url, (err, dbase) => {
   app.use(bodyParser.urlencoded({
     extended: true
   }));
+  app.use(bodyParser.json());
 
   app.listen(3000, () => {
     console.log('listening on 3000.');
@@ -43,7 +46,9 @@ MongoClient.connect(db_url, (err, dbase) => {
    * Test Passed
    */
   app.get('/initialize', (req, res) => {
-    database.collection('users').findOne({ email: 'admin@moviedb.com' }, (err, item) => {
+    database.collection('users').findOne({
+      email: 'admin@moviedb.com'
+    }, (err, item) => {
       if (!item) {
         // item is the existing user object
         bcrypt.hash('admin123', 5, (err, bcryptedPassword) => {
@@ -56,7 +61,7 @@ MongoClient.connect(db_url, (err, dbase) => {
           database.collection('users').save(user, (err, result) => {
             if (err) {
               console.log(err);
-              return res.send(500, err);
+              return res.status(500).send(err);
             }
             console.log('initiated user');
 
@@ -68,38 +73,45 @@ MongoClient.connect(db_url, (err, dbase) => {
               database.collection('movies').save(movie, (err, result) => {
                 if (!err) reqCount++;
                 if (reqCount == movies.length) {
-                  res.send(200, "database initiated");
+                  res.status(200).send("database initiated");
                 }
               });
             })
           });
         });
       } else {
-        res.send(200, "already initiated");
+        res.status(200).send("already initiated");
       }
     });
   });
 
   /**
- * Get Movie List Interface
- * TYPE - GET
- * @res movie list
- * Test Passed
- */
+   * Get Movie List Interface
+   * TYPE - GET
+   * @res movie list
+   * Test Passed
+   */
   app.get('/api/movies', (req, res, next) => {
     database.collection('movies').find().toArray((err, results) => {
       res.json(results);
     });
   });
 
+
+  /**
+   * Add New Movie Interface
+   * TYPE - POST
+   * @req.body movie object
+   * @res operation status
+   * Test Passed
+   */
   app.post('/api/addmovie', (req, res) => {
-    console.log(req.body);
     database.collection('movies').save(req.body, (err, result) => {
       if (err) {
         console.log(err);
-        return res.send(500, err);
+        return res.status(500).send(err);
       }
-      res.send(201, 'saved successfully');
+      res.status(201).send('saved successfully');
     })
   });
 
@@ -109,17 +121,17 @@ MongoClient.connect(db_url, (err, dbase) => {
    * TYPE - DELETE
    * @req.body movie object to delete
    * @res operation status
-   * Test Not Performed
+   * Test Passed
    */
   app.delete('/api/deletemovie', (req, res) => {
-    database.collection('movies').findOneAndDelete({
-      "_id": req.body['_id']
+    database.collection('movies').deleteOne({
+      "_id": new MongoObjectID(req.query.movieId)
     }, (err, result) => {
       if (err) {
         console.log(err);
-        return res.send(500, err);
+        return res.status(500).send(err);
       }
-      res.send(200, 'movie deleted');
+      res.status(200).send('movie deleted');
     });
   });
 
@@ -129,29 +141,29 @@ MongoClient.connect(db_url, (err, dbase) => {
    * @req.body.oldmovie movie object to update
    * @req.body.newmovie movie object with new values
    * @res operation status
-   * Test Not Performed
+   * Test Passed
    */
   app.put('/api/updatemovie', (req, res) => {
-    database.collection('movies').findOneAndUpdate({
-      "_id": req.body.oldmovie['_id']
+    // console.log(req.body);
+    database.collection('movies').updateOne({
+      "_id": new MongoObjectID(req.body.oldmovie['_id'])
     }, {
-        $set: {
-          name: req.body.newmovie.name,
-          year: req.body.newmovie.year,
-          rating: req.body.newmovie.rating
-        }
-      }, {
-        sort: {
-          _id: -1
-        },
-        upsert: true
-      }, (err, result) => {
-        if (err) {
-          console.log(err);
-          return res.send(err);
-        }
-        res.send(200, result)
-      });
+      $set: {
+        name: req.body.newmovie.name,
+        year: req.body.newmovie.year,
+        rating: req.body.newmovie.rating,
+        genre: req.body.newmovie.genre,
+        description: req.body.newmovie.description
+      }
+    }, {
+      upsert: true
+    }, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send(err);
+      }
+      res.status(200).send('movie updated');
+    });
   });
 
 
@@ -168,30 +180,35 @@ MongoClient.connect(db_url, (err, dbase) => {
     database.collection('users').save(req.body, (err, result) => {
       if (err) {
         console.log(err);
-        return res.send(500, err);
+        return res.status(500).send(err);
       }
-      res.send(201, 'registration successful');
+      res.status(201).send('registration successful');
     })
   });
 
 
   /**
- * User Login Interface
- * TYPE - POST
- * @req.body.credentials User Credentials
- * @res authentication status
- * Test Not Performed
- */
+   * User Login Interface
+   * TYPE - POST
+   * @req.body.credentials User Credentials
+   * @res authentication status
+   * Test Not Performed
+   */
   app.post('/api/user/auth', (req, res) => {
     let credentials = req.body;
-    database.collection('users').findOne({ email: credentials.email }, (err, item) => {
+    database.collection('users').findOne({
+      email: credentials.email
+    }, (err, item) => {
       if (item) {
         bcrypt.compare(credentials.password, item.password, (err, passwordMatch) => {
-          if (passwordMatch) res.send(200, { "user":item, "message":"login success"});
-          else res.send(401, "invalid credentials");
+          if (passwordMatch) res.status(200).send({
+            "user": item,
+            "message": "login success"
+          });
+          else res.status(401).send("invalid credentials");
         });
       } else {
-        res.send(401, "invalid user");
+        res.status(401).send("invalid user");
       }
     })
   });
