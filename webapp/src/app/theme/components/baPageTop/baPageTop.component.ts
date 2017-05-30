@@ -16,10 +16,11 @@ export class BaPageTop {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
     });
-    // setTimeout(() => {
-    //   this.toggleMenu();
-    // }, 100);
   }
+
+  // ngAfterViewInit() {
+  //   this.toggleMenu();
+  // }
 
   public toggleMenu() {
     this.isMenuCollapsed = !this.isMenuCollapsed;

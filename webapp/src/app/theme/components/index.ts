@@ -3,6 +3,7 @@ export * from './baMsgCenter';
 export * from './baSidebar';
 export * from './baMenu/components/baMenuItem';
 export * from './baMenu';
+export * from './baCard';
 export * from './baContentTop';
 export * from './baBackTop';
 export * from './baFullCalendar';

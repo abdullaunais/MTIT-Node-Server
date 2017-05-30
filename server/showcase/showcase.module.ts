@@ -3,8 +3,8 @@ import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 
-import { routing }       from './components.routing';
-import { Components } from './components.component';
+import { Showcase } from './showcase.component';
+import { routing }       from './showcase.routing';
 
 @NgModule({
   imports: [
@@ -14,7 +14,9 @@ import { Components } from './components.component';
     routing
   ],
   declarations: [
-    Components
+    Showcase
+  ],
+  providers: [
   ]
 })
-export class ComponentsModule {}
+export class ShowcaseModule {}

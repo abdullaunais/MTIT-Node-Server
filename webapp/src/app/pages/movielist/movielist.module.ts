@@ -3,18 +3,22 @@ import { CommonModule }  from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgaModule } from '../../theme/nga.module';
 
-import { routing }       from './components.routing';
-import { Components } from './components.component';
+import { MovieList } from './movielist.component';
+import { routing }       from './movielist.routing';
+import { Ng2SmartTableModule } from "ng2-smart-table";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     NgaModule,
+    Ng2SmartTableModule,
     routing
   ],
   declarations: [
-    Components
+    MovieList
+  ],
+  providers: [
   ]
 })
-export class ComponentsModule {}
+export class MovieListModule {}

@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+    <div class="card" *ngFor="let movie of movies; let i = index;" style="width: 30em; height:auto; margin:1rem; float:left;">
+      <img class="card-img-left" src="{{ movie.img }}" style="width:10rem; height:auto;border-bottom-left-radius:8px; border-top-left-radius:8px;" alt="Card image cap">
+      <div class="card-block" style="width:19em; position:absolute; right:0;top:0;">
+        <h4 class="card-title">{{ movie.name }}</h4>
+        <p class="card-text">{{ movie.description }}</p>
+        <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+      </div>
+    </div>
+
+  </div>
+</div>
+

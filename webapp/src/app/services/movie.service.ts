@@ -11,7 +11,7 @@ export class MovieService {
 
   GET_MOVIES_URL = "/movies";
   ADD_MOVIE_URL = "/addmovie";
-  REMOVE_MOVIE_URL = "/removemovie";
+  REMOVE_MOVIE_URL = "/deletemovie";
   UPDATE_MOVIE_URL = "/updatemovie"
 
   constructor(public httpService: Http) {
@@ -47,6 +47,7 @@ export class MovieService {
    * @memberof MovieService
    */
   addMovie(movie: any) {
+    movie['img'] = "assets/img/movie_cover.png";
     let body = JSON.stringify(movie);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -97,8 +98,12 @@ export class MovieService {
    * 
    * @memberof MovieService
    */
-  updateMovie(movie: any) {
-    let body = JSON.stringify(movie);
+  updateMovie(oldmovie:any, newmovie: any) {
+    let data = {
+      oldmovie: oldmovie,
+      newmovie: newmovie
+    };
+    let body = JSON.stringify(data);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let options = new RequestOptions({ headers: headers });
