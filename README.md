@@ -26,3 +26,7 @@ npm start
 ```
 
 Enjoy
+
+### Special Thanks
+
+* [ng2-admin](https://github.com/akveo/ng2-admin/) - Admin Template designed by Akveo.
