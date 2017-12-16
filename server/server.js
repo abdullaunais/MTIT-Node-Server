@@ -16,5 +16,5 @@ let db_url = "mongodb://" + config.database.user + ":" + config.database.passwor
 MongoClient.connect(db_url, (err, dbase) => {
   if (err) return console.log(err);
   database = dbase;
-  require('./routes')(app, path, database, cors, bcrypt, bodyParser);
+  const routes = require('./routes')(app, database);
 });
