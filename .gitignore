@@ -59,3 +59,5 @@ typings/
 
 # vs code config files
 .vscode/
+
+server/\.idea/
